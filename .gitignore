@@ -2,7 +2,7 @@
 .gradle
 .idea
 build
-out/
+
 test.lock.db
 test.mv.db
 test.trace.db
