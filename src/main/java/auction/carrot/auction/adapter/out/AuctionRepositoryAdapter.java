@@ -1,10 +1,8 @@
 package auction.carrot.auction.adapter.out;
 
-import auction.carrot.auction.adapter.in.mapper.AuctionMapper;
 import auction.carrot.auction.adapter.out.repository.AuctionRepository;
 import auction.carrot.auction.domain.Auction;
 import auction.carrot.auction.port.out.AuctionPort;
-import jakarta.validation.constraints.AssertTrue;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -23,8 +21,9 @@ public class AuctionRepositoryAdapter implements AuctionPort {
 
     @Override
     public void updateAuction(final Long auctionId, Auction updateAuction) {
-        Auction auction = repository.findById(auctionId).orElseThrow();
-        auction.change(updateAuction.getAuctionCompetitionFirst());
+        Auction auction = repository.findById(auctionId).orElseThrow(
+                () -> new NullPointerException());
+        auction.change(updateAuction.getAuctionBettingCost(), updateAuction.getAuctionCompetitionFirst());
     }
 
     @Override
@@ -40,6 +39,6 @@ public class AuctionRepositoryAdapter implements AuctionPort {
     @Override
     public Auction getAuctionOne(final Long auctionId) {
         return repository.findById(auctionId).orElseThrow(
-                () -> new RuntimeException());
+                () -> new NullPointerException());
     }
 }

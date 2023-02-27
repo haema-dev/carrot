@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum ErrorCode {
 
+    // 서버 에러
     INTERNAL_SERVER_ERROR(500, "S999", "서버 에러");
 
     private int status;
